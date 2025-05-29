@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model City
+
+<a href="@Url.Action("Index", "Cities")" class="btn btn-primary mb-3">
+    ← Назад ко всем городам
+</a>
+
+<div class="card shadow-sm mb-4">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.PhotoUrl" class="img-fluid rounded-start" alt="@Model.Name" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">@Model.Name</h2>
+                <p class="card-text"><strong>Регион:</strong> @Model.Region</p>
+                <p class="card-text"><strong>Население:</strong> @Model.Population</p>
+                <p class="card-text">@Model.History</p>
+                <img src="@Model.CoatUrl" width="100" alt="Герб города" />
+
+            </div>
+        </div>
+    </div>
+</div>
+<h3 class="mb-3">Достопримечательности:</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var attraction in Model.Attractions)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="@attraction.PhotoUrl" class="card-img-top" alt="@attraction.Name" style="height: 180px; object-fit: cover;" />
+                <div class="card-body">
+                    <h5 class="card-title">@attraction.Name</h5>
+                    <p class="card-text">@Model.History</p>
+                    <a href="@Url.Action("Details", "Attractions", new { id = attraction.Id })" class="btn btn-outline-secondary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Attraction
+<a href="@Url.Action("Details", "Cities", new { id = Model.CityId })" class="btn btn-primary mb-3">
+    ← Назад в @Model.City.Name
+</a>
+
+<a href="@Url.Action("Index", "Cities")" class="btn btn-primary mb-3">
+    ← Назад ко всем городам
+</a>
+
+
+<div class="card shadow-sm">
+    <img src="@Model.PhotoUrl" class="card-img-top" style="max-height: 350px; object-fit: cover;" alt="@Model.Name" />
+    <div class="card-body">
+        <h2 class="card-title">@Model.Name</h2>
+        <p class="card-text">@Model.History</p>
+        <p class="card-text"><strong>Часы работы:</strong> @Model.WorkingHours</p>
+        <p class="card-text">
+            <strong>Стоимость:</strong>
+            @(Model.Price.HasValue ? $"{Model.Price} руб." : "Бесплатно")
+        </p>
+    </div>
+</div>
+
+
